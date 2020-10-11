@@ -12,37 +12,73 @@ import java.util.*;
 
 public class TestDemo {
 
+    Scanner scan = new Scanner(System.in);
+    LocalDate t1 = LocalDate.now();
+    LocalDate ettÅrSedan = t1.minusYears(1);
+    String kundPersonNummerOchNamn = "";
+    String kundMedlemsDatum = "";
+    final String tempPath = "src/customers.txt";
+    final String outputPath = "src/nyaKunderLoggade.txt";
+    //boolean test = false; //public boolean test = false;
+    boolean personenFinns = false;
+    String svarNamn = "";
+
+
     /*
-    public String getCustomer(String svarNamn, String tempLine){
-            if (tempLine.toLowerCase().contains(svarNamn.toLowerCase()) ) {
-                rad2.trim();
-                LocalDate membership = LocalDate.parse(rad2);
-                System.out.println("Info: " + tempLine + " " + "Medlemskapsdatum: " + rad2);
+    public String getCustomer(String svarNamn) {
+
+
+        if (kundPersonNummerOchNamn.toLowerCase().contains(svarNamn.toLowerCase())) {
+            kundMedlemsDatum.trim();
+            LocalDate membership = LocalDate.parse(kundMedlemsDatum);
+            personenFinns = true;
+
+            System.out.println("Info: " + kundPersonNummerOchNamn + ", "
+                    + "Medlemskapsdatum: " + kundMedlemsDatum);
+            {
+                if (membership.isAfter(ettÅrSedan)) {
+                    System.out.println("Du är aktiv medlem");
+                    writer.println(kundPersonNummerOchNamn + " " + t1);
+                    writer.close();
+                } else
+                    System.out.println(("Ditt medlemskap har utgått"));
+            }
 
         }
 
-         */
+    }
+        if(!personenFinns)
+
+    {
+        System.out.println("Du har inte varit medlem förr");
+        System.exit(0);
+    }
+
+}}}}}}
+
+     */
+
+    public void inteMedlemAvbrytProgram() {
+        if(!personenFinns){
+            System.out.println("Du har inte varit medlem förr");
+            System.exit(0);}
+    }
+
+
+
+
 
     public TestDemo() {
 
-        Scanner scan = new Scanner(System.in);
-        LocalDate t1 = LocalDate.now();
-        LocalDate ettÅrSedan = t1.minusYears(1);
-        String kundPersonNummerOchNamn = "";
-        String kundMedlemsDatum = "";
-        final String tempPath = "src/customers.txt";
-        final String outputPath = "src/nyaKunderLoggade.txt";
-        boolean test = false; //public boolean test = false;
-        boolean personenFinns = false;
-
-        double temp;
-        String svarNamn = "";
 
 
 
 
-        System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
-        svarNamn = scan.next();
+
+
+
+        //System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
+        //svarNamn = scan.next();
 
 
         try {
@@ -51,18 +87,21 @@ public class TestDemo {
             PrintWriter writer = new PrintWriter(
                     new BufferedWriter(new FileWriter(outputPath, true)));
 
+            System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
+            svarNamn = scan.next();
+
             while ((kundPersonNummerOchNamn = reader.readLine()) != null) {
 
                 kundPersonNummerOchNamn.trim();
                 kundMedlemsDatum  = reader.readLine();
 
                 if (kundPersonNummerOchNamn.toLowerCase().contains(svarNamn.toLowerCase()) ) {
-                    kundMedlemsDatum .trim();
-                    LocalDate membership = LocalDate.parse(kundMedlemsDatum );
+                    kundMedlemsDatum.trim();
+                    LocalDate membership = LocalDate.parse(kundMedlemsDatum);
                     personenFinns = true;
 
                     System.out.println("Info: " + kundPersonNummerOchNamn + ", "
-                            + "Medlemskapsdatum: " + kundMedlemsDatum );
+                            + "Medlemskapsdatum: " + kundMedlemsDatum);
                     {
                         if (membership.isAfter(ettÅrSedan)){
                             System.out.println("Du är aktiv medlem");
@@ -71,12 +110,12 @@ public class TestDemo {
                         else
                             System.out.println(("Ditt medlemskap har utgått"));
                     }
-                    if (!personenFinns ) {
-                        System.out.println("Du har inte varit medlem förr");
-                        break;}
                 }
-
             }
+            //if (!personenFinns) {
+             //   System.out.println("Du har inte varit medlem förr");
+             //   System.exit(0);}
+            inteMedlemAvbrytProgram();
 
 
         } catch (Exception e) {
