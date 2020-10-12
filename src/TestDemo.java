@@ -13,50 +13,21 @@ import java.util.*;
 public class TestDemo {
 
     Scanner scan = new Scanner(System.in);
-    LocalDate t1 = LocalDate.now();
-    LocalDate ettÅrSedan = t1.minusYears(1);
+    LocalDate dagensDatum = LocalDate.now();
+    LocalDate ettÅrSedan = dagensDatum.minusYears(1);
     String kundPersonNummerOchNamn = "";
     String kundMedlemsDatum = "";
-    final String tempPath = "src/customers.txt";
-    final String outputPath = "src/nyaKunderLoggade.txt";
-    //boolean test = false; //public boolean test = false;
+    String tempPath = "src/customers.txt";
+    String outputPath = "src/nyaKunderLoggade.txt";
     boolean personenFinns = false;
     String svarNamn = "";
 
 
-    /*
-    public String getCustomer(String svarNamn) {
-
-
-        if (kundPersonNummerOchNamn.toLowerCase().contains(svarNamn.toLowerCase())) {
-            kundMedlemsDatum.trim();
-            LocalDate membership = LocalDate.parse(kundMedlemsDatum);
-            personenFinns = true;
-
-            System.out.println("Info: " + kundPersonNummerOchNamn + ", "
-                    + "Medlemskapsdatum: " + kundMedlemsDatum);
-            {
-                if (membership.isAfter(ettÅrSedan)) {
-                    System.out.println("Du är aktiv medlem");
-                    writer.println(kundPersonNummerOchNamn + " " + t1);
-                    writer.close();
-                } else
-                    System.out.println(("Ditt medlemskap har utgått"));
-            }
-
-        }
-
-    }
-        if(!personenFinns)
-
-    {
-        System.out.println("Du har inte varit medlem förr");
-        System.exit(0);
+    public String medlemsInfoMeddelande (String kundPersonNummerOchNamn , String kundMedlemsDatum){
+        return("Info (Personnummer och namn): " + kundPersonNummerOchNamn + "\n"
+                + "Senaste betaldatum för medlemskap: " + kundMedlemsDatum);
     }
 
-}}}}}}
-
-     */
 
     public void inteMedlemAvbrytProgram() {
         if(!personenFinns){
@@ -66,24 +37,9 @@ public class TestDemo {
 
 
 
+    public void mainProgram() {
 
-
-    public TestDemo() {
-
-
-
-
-
-
-
-
-        //System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
-        //svarNamn = scan.next();
-
-
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new FileReader(tempPath));
+        try { BufferedReader reader = new BufferedReader(new FileReader(tempPath));
             PrintWriter writer = new PrintWriter(
                     new BufferedWriter(new FileWriter(outputPath, true)));
 
@@ -100,82 +56,41 @@ public class TestDemo {
                     LocalDate membership = LocalDate.parse(kundMedlemsDatum);
                     personenFinns = true;
 
-                    System.out.println("Info: " + kundPersonNummerOchNamn + ", "
-                            + "Medlemskapsdatum: " + kundMedlemsDatum);
+                    System.out.println(medlemsInfoMeddelande(kundPersonNummerOchNamn , kundMedlemsDatum));
                     {
                         if (membership.isAfter(ettÅrSedan)){
                             System.out.println("Du är aktiv medlem");
-                            writer.println(kundPersonNummerOchNamn + " " + t1);
+                            writer.println(kundPersonNummerOchNamn + " " + dagensDatum);
                             writer.close();}
                         else
                             System.out.println(("Ditt medlemskap har utgått"));
                     }
                 }
             }
-            //if (!personenFinns) {
-             //   System.out.println("Du har inte varit medlem förr");
-             //   System.exit(0);}
             inteMedlemAvbrytProgram();
 
 
-        } catch (Exception e) {
-            System.out.println("Något gick fel");
+        } catch (FileNotFoundException e){
+            System.out.println("Filen kunde inte hittas");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        catch (IOException e){
+            System.out.println("Det gick inte att skriva till fil");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        catch (Exception e){
+            System.out.println("Något gick fel...");
             e.printStackTrace();
             System.out.flush();
             System.exit(0);
         }
-
-
-
-
     }
 
 
     public static void main(String[] args) {
         TestDemo t = new TestDemo();
+        t.mainProgram();
     }
-
-
 }
-
-/*
-while(true) {
-            String s = tempPath.readLine();
-            if (s == null)
-                break;
-            if (s.indexOf(txt) >= 0)
-                utström.println(s);
-        }
- */
-
-
-
-                /*
-                String rad1 = reader.readLine();
-                String rad2 = reader.readLine();
-                int datum = Integer.parseInt(rad2);
-                System.out.println(rad2);
-
-                 */
-
-                /*
-                while (true) {
-                    String rad1 = reader.readLine();
-                    String rad2 = reader.readLine();
-                    int datum = Integer.parseInt(rad2);
-                    if (rad1.equals(svarNamn))
-                        System.out.println(svarNamn + " " + datum);
-                }
-
-                 */
-
-
-
-
-                /*
-                FileWriter writer = new FileWriter("/Users/UlfNyberg/Desktop/newfile.txt");
-                if (tempLine == namn && LocalDate || tempLine == personNr && LocalDate)
-                writer.write(fileContent);
-                writer.close();
-
-                 */

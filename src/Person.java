@@ -18,10 +18,6 @@ public class Person {
         this.medlemsDatum = medlemsDatum;
     }
 
-    public Person (String personNummer, String namn){  //TILLFÄLLIG!
-        this.personNummer = personNummer;
-        this.namn = namn;}
-
 
 
     public String getMedlemsDatum(){
