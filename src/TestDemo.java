@@ -17,7 +17,7 @@ public class TestDemo {
     LocalDate ettÅrSedan = dagensDatum.minusYears(1);
     String kundPersonNummerOchNamn = "";
     String kundMedlemsDatum = "";
-    String tempPath = "src/customers.txt";
+    String inPath = "src/customers.txt";
     String outputPath = "src/nyaKunderLoggade.txt";
     boolean personenFinns = false;
     String svarNamn = "";
@@ -41,7 +41,7 @@ public class TestDemo {
     public void mainProgram() {
 
         //try with resources
-        try { BufferedReader reader = new BufferedReader(new FileReader(tempPath));
+        try { BufferedReader reader = new BufferedReader(new FileReader(inPath));
             PrintWriter writer = new PrintWriter(
                     new BufferedWriter(new FileWriter(outputPath, true)));
 

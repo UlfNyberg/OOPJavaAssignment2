@@ -21,8 +21,8 @@ public class TestDemoTest {
 
     @Test
     public final void kollaSåAttRättFilÄrInputFilAvMedlemmarTest (){
-        assertTrue(td.tempPath.equals("src/customers.txt"));
-        assertFalse(td.tempPath.equals("src/nyaKunderLoggade.txt"));
+        assertTrue(td.inPath.equals("src/customers.txt"));
+        assertFalse(td.inPath.equals("src/nyaKunderLoggade.txt"));
 
     }
 
@@ -60,7 +60,7 @@ public class TestDemoTest {
         BufferedReader reader = new BufferedReader(
                 new FileReader(tempPath));
         assertTrue(!tempPath.isEmpty());
-        assertFalse(td.tempPath.isBlank());
+        assertFalse(td.inPath.isBlank());
 
     }
 
