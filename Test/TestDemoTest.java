@@ -13,9 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Project: OOPJava Inlämningsuppgift02
  * Copyright: MIT
  */
+
 public class TestDemoTest {
 
     public TestDemo td = new TestDemo();
+
 
     @Test
     public final void kollaSåAttRättFilÄrInputFilAvMedlemmarTest (){
@@ -38,6 +40,7 @@ public class TestDemoTest {
         assertNotNull(td.kundMedlemsDatum);
     }
 
+    //printar till tempTest txt-fil, det aktuella datumet då testet utfördes
     @Test
     public final void printWriterTillTestFilTest() throws IOException {
         String outputPath = "Test/tempTest.txt";
@@ -49,14 +52,28 @@ public class TestDemoTest {
     }
 
 
+    //testar om det finns något i txt-dokumentet vilket det ska göra efter
+    // printWriterTillTestFilTest-testet ovanför
+    @Test
+    public final void fileReaderTillTestFilTest () throws FileNotFoundException {
+        String tempPath = "Test/tempTest.txt";
+        BufferedReader reader = new BufferedReader(
+                new FileReader(tempPath));
+        assertTrue(!tempPath.isEmpty());
+        assertFalse(td.tempPath.isBlank());
+
+    }
+
+    //att boolean 'personenFinns' är false i startläget
     @Test
     public final void inteMedlemAvbrytProgramOutputTest () {
-        //att boolean 'personenFinns' är false i startläget
         assertTrue((!td.personenFinns));
         assertFalse((td.personenFinns));
 
     }
 
+
+    //testar om output-texten stämmer
     @Test
     public final void medlemsInfoMeddelandeTest(){
         assertTrue(td.medlemsInfoMeddelande("19910101111, John Lee Hooker",
@@ -69,15 +86,6 @@ public class TestDemoTest {
                 + "Senaste  " + "1968-01-01"));;
     }
 
-    @Test
-    public final void fileReaderTillTestFilTest () throws FileNotFoundException {
-        String tempPath = "Test/tempTest.txt";
-        BufferedReader reader = new BufferedReader(
-                    new FileReader(tempPath));
-        assertTrue(!tempPath.isEmpty());
-        assertFalse(td.tempPath.isBlank());
-
-    }
 
 
 

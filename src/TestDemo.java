@@ -23,12 +23,13 @@ public class TestDemo {
     String svarNamn = "";
 
 
+    //metod: om namnet finns i txt-filen, pritas personens info i en info-text
     public String medlemsInfoMeddelande (String kundPersonNummerOchNamn , String kundMedlemsDatum){
         return("Info (Personnummer och namn): " + kundPersonNummerOchNamn + "\n"
                 + "Senaste betaldatum för medlemskap: " + kundMedlemsDatum);
     }
 
-
+    //metod: om namnet inte finns i txt-filen
     public void inteMedlemAvbrytProgram() {
         if(!personenFinns){
             System.out.println("Du har inte varit medlem förr");
@@ -39,6 +40,7 @@ public class TestDemo {
 
     public void mainProgram() {
 
+        //try with resources
         try { BufferedReader reader = new BufferedReader(new FileReader(tempPath));
             PrintWriter writer = new PrintWriter(
                     new BufferedWriter(new FileWriter(outputPath, true)));
@@ -46,10 +48,13 @@ public class TestDemo {
             System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
             svarNamn = scan.next();
 
-            while ((kundPersonNummerOchNamn = reader.readLine()) != null) {
+
+
+            while ((kundPersonNummerOchNamn = reader.readLine()) != null) { // =första raden i txt-filen
 
                 kundPersonNummerOchNamn.trim();
-                kundMedlemsDatum  = reader.readLine();
+                kundMedlemsDatum  = reader.readLine();  // =andra raden i txt-filen
+
 
                 if (kundPersonNummerOchNamn.toLowerCase().contains(svarNamn.toLowerCase()) ) {
                     kundMedlemsDatum.trim();
@@ -67,7 +72,7 @@ public class TestDemo {
                     }
                 }
             }
-            inteMedlemAvbrytProgram();
+            inteMedlemAvbrytProgram();      //om namnet inte hittas i txt-filen
 
 
         } catch (FileNotFoundException e){
@@ -76,12 +81,12 @@ public class TestDemo {
             System.exit(0);
         }
         catch (IOException e){
-            System.out.println("Det gick inte att skriva till fil");
+            System.out.println("Det gick inte att skriva till filen");
             e.printStackTrace();
             System.exit(0);
         }
         catch (Exception e){
-            System.out.println("Något gick fel...");
+            System.out.println("Något blev fel...");
             e.printStackTrace();
             System.out.flush();
             System.exit(0);
