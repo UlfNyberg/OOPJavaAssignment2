@@ -41,9 +41,9 @@ public class TestDemo {
     public void mainProgram() {
 
         //try with resources
-        try { BufferedReader reader = new BufferedReader(new FileReader(inPath));
+        try ( BufferedReader reader = new BufferedReader(new FileReader(inPath));
             PrintWriter writer = new PrintWriter(
-                    new BufferedWriter(new FileWriter(outputPath, true)));
+                    new BufferedWriter(new FileWriter(outputPath, true)));) {
 
             System.out.println("Ange kundens för- och efternamn eller kundens personnummer: ");
             svarNamn = scan.next();
